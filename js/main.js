@@ -32,7 +32,7 @@ console.log(itemContainer);
 // inserire classe active al div dell'immagine visibile
 let activePosition = 0;
 
-const itemContainerList = document.querySelectorAll("#itemContainer .item");
+const itemContainerList = document.getElementsByClassName("item");
 itemContainerList[activePosition].classList.add("active");
 console.log(itemContainerList);
 
@@ -42,6 +42,10 @@ console.log(itemContainerList);
 // CONSEGNA
 // Al click dell’utente sulle frecce, il programma cambierà l’immagine attiva, che quindi verrà visualizzata al posto della precedente.
 
+    /* BONUS 1 */
+
+    // Aggiungere il ciclo infinito del carosello. Ovvero se è attiva la prima immagine e l’utente clicca la freccia per andare all’immagine precedente, dovrà comparire l’ultima immagine dell’array e viceversa.
+
 // SVILUPPO CONSEGNA
 
 // selezionare i buttons
@@ -50,34 +54,50 @@ const buttonUp = document.getElementById("buttonUp");
 
 // attivare l'evento 'click' per il buttonDown
 buttonDown.addEventListener("click",
+    
     function () {
+
+        if (activePosition == images.length - 1) {
+            //reset activePosition
+            activePosition = 0;
+            
+        } else {
+            //incrementare il valore di activePosition
+            activePosition++;
+        }
+
         //rimuovere la classe active dall'item attuale
-        itemContainerList[activePosition].classList.remove("active");
+        document.querySelector(".item.active").classList.remove("active");
         //assegnare la classe active all'item successivo
-        itemContainerList[activePosition +1].classList.add("active");
-        //incrementare il valore di activePosition
-        activePosition++;
+        itemContainerList[activePosition].classList.add("active");
+
     }
 );
 
-// attivare l'evento 'click' per il buttonDown
+// attivare l'evento 'click' per il buttonUp
 buttonUp.addEventListener("click",
+    
     function () {
+
+        if (activePosition == 0) {
+            //reset activePosition
+            activePosition = images.length - 1;
+            
+        } else {
+            //incrementare il valore di activePosition
+            activePosition--;
+        }
+
         //rimuovere la classe active dall'item attuale
-        itemContainerList[activePosition].classList.remove("active");
+        document.querySelector(".item.active").classList.remove("active");
         //assegnare la classe active all'item successivo
-        itemContainerList[activePosition - 1].classList.add("active");
-        //incrementare il valore di activePosition
-        activePosition--;
+        itemContainerList[activePosition].classList.add("active");
+
     }
 );
     
     
-    
 
-
-        /* BONUS 1 */
-// Aggiungere il ciclo infinito del carosello. Ovvero se è attiva la prima immagine e l’utente clicca la freccia per andare all’immagine precedente, dovrà comparire l’ultima immagine dell’array e viceversa.
 
 
 /* BONUS 2 */
