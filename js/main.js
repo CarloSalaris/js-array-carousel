@@ -20,7 +20,7 @@ const itemContainer = document.getElementById("itemContainer");
 // creare ciclo for per passare tutti gli elementi dell'array
 for (let i = 0; i < images.length; i++) {
     
-    // inserire elementi HTML con template literal
+    // inserire elementi HTML con template literal (class item = nascosto)
     itemContainer.innerHTML +=
     `<div class="item">
         <img src="${images[i]}" alt="image">
@@ -29,10 +29,57 @@ for (let i = 0; i < images.length; i++) {
 
 console.log(itemContainer);
 
+// inserire classe active al div dell'immagine visibile
 let activePosition = 0;
 
 const itemContainerList = document.querySelectorAll("#itemContainer .item");
 itemContainerList[activePosition].classList.add("active");
 console.log(itemContainerList);
-// inserire classi item (nascosto) + active (visibile)
+
+
+/* MILESTONE 3 */
+
+// CONSEGNA
+// Al click dell’utente sulle frecce, il programma cambierà l’immagine attiva, che quindi verrà visualizzata al posto della precedente.
+
+// SVILUPPO CONSEGNA
+
+// selezionare i buttons
+const buttonDown = document.getElementById("buttonDown");
+const buttonUp = document.getElementById("buttonUp");
+
+// attivare l'evento 'click' per il buttonDown
+buttonDown.addEventListener("click",
+    function () {
+        //rimuovere la classe active dall'item attuale
+        itemContainerList[activePosition].classList.remove("active");
+        //assegnare la classe active all'item successivo
+        itemContainerList[activePosition +1].classList.add("active");
+        //incrementare il valore di activePosition
+        activePosition++;
+    }
+);
+
+// attivare l'evento 'click' per il buttonDown
+buttonUp.addEventListener("click",
+    function () {
+        //rimuovere la classe active dall'item attuale
+        itemContainerList[activePosition].classList.remove("active");
+        //assegnare la classe active all'item successivo
+        itemContainerList[activePosition - 1].classList.add("active");
+        //incrementare il valore di activePosition
+        activePosition--;
+    }
+);
+    
+    
+    
+
+
+        /* BONUS 1 */
+// Aggiungere il ciclo infinito del carosello. Ovvero se è attiva la prima immagine e l’utente clicca la freccia per andare all’immagine precedente, dovrà comparire l’ultima immagine dell’array e viceversa.
+
+
+/* BONUS 2 */
+// Aggiungere la visualizzazione di tutte le thumbnails sulla destra dell’immagine grande attiva, come nello screenshot proposto. Tutte le miniature avranno un layer di opacità scura, tranne quella corrispondente all’immagine attiva, che invece avrà un bordo colorato. Al click delle frecce, oltre al cambio di immagine attiva, gestire il cambio di miniatura attiva.
 
